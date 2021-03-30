@@ -1,11 +1,10 @@
-import { CardGrid } from "@vkontakte/vkui";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import BoardsItem from "./BoardsItem";
+import PropTypes from "prop-types";
+import { CardGrid } from "@vkontakte/vkui";
 import firebase from "firebase/app";
 
-const BoardsList = () => {
-  const [boards, setBoards] = useState([]);
-
+const BoardsList = ({ boards, onDelete, onLoadBoards }) => {
   // Запрос в базу данных за досками
   useEffect(() => {
     const db = firebase.firestore();
@@ -22,7 +21,7 @@ const BoardsList = () => {
           });
         });
 
-        setBoards(boards);
+        onLoadBoards(boards);
       });
   }, []);
 
@@ -32,11 +31,24 @@ const BoardsList = () => {
 
   return (
     <CardGrid size="l">
-      {boards.map(({ name }) => (
-        <BoardsItem key={name}>{name}</BoardsItem>
+      {boards.map(({ id, name }) => (
+        <BoardsItem onDelete={onDelete} key={id} id={id}>
+          {name}
+        </BoardsItem>
       ))}
     </CardGrid>
   );
+};
+
+BoardsList.propTypes = {
+  boards: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onLoadBoards: PropTypes.func.isRequired,
 };
 
 export default BoardsList;
