@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Card,
-  FormLayout,
-  Input,
-  FormLayoutGroup,
-} from "@vkontakte/vkui";
+import { Button, Card, Input, FormItem } from "@vkontakte/vkui";
 import { Icon24Add } from "@vkontakte/icons";
 
 const modes = {
@@ -31,24 +25,15 @@ const BoardsCreate = () => {
 
   return (
     <Card mode="shadow">
-      <FormLayout>
-        <FormLayoutGroup>
-          <Input />
-        </FormLayoutGroup>
-
-        <FormLayoutGroup style={{ padding: "12px 0" }}>
-          <div>
-            <Button style={{ marginRight: "12px" }}>Создать доску</Button>
-            <Button
-              style={{ marginRight: "12px" }}
-              onClick={() => setMode(modes.button)}
-              mode="tertiary"
-            >
-              Отменить
-            </Button>
-          </div>
-        </FormLayoutGroup>
-      </FormLayout>
+      <FormItem>
+        <Input />
+      </FormItem>
+      <FormItem>
+        <Button>Создать доску</Button>
+        <Button onClick={() => setMode(modes.button)} mode="tertiary">
+          Отменить
+        </Button>
+      </FormItem>
     </Card>
   );
 };
