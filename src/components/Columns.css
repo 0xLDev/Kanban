@@ -1,0 +1,9 @@
+.Columns .Panel__in {
+  display: flex;
+  flex-direction: column;
+}
+
+.Columns__list {
+  flex-grow: 1;
+  height: auto;
+}
