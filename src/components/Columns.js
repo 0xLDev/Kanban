@@ -9,8 +9,8 @@ import ColumnCreate from "./ColumnCreate";
 const Columns = () => {
   const [columns, setColumns] = useState([]);
 
-  const addColumn = (cplumn) => {
-    setColumns([...columns, cplumn]);
+  const addColumn = (column) => {
+    setColumns([...columns, column]);
   };
 
   const removeColumn = (removeId) => {
