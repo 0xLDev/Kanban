@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Div, Card, CardGrid, Header, Button } from "@vkontakte/vkui";
 import firebase from "firebase/app";
-import ColumnCard from "./ColumnCard";
+
 import "./Column.css";
+import Cards from "./Cards";
 
 const Column = ({ name, id, onDelete }) => {
   const deleteColumn = () => {
@@ -28,9 +29,7 @@ const Column = ({ name, id, onDelete }) => {
       </div>
 
       <Card className="Column__wrapper">
-        <CardGrid size="l">
-          <ColumnCard>Привет</ColumnCard>
-        </CardGrid>
+        <Cards />
       </Card>
     </Div>
   );

@@ -1,0 +1,5 @@
+.ColumnCard__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
