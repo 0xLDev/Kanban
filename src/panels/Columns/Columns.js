@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { PanelHeaderSimple, Gallery } from "@vkontakte/vkui";
 import firebase from "firebase/app";
 
-import Column from "./Column";
+import Column from "../../components/Column/Column";
 import "./Columns.css";
-import ColumnCreate from "./ColumnCreate";
+import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
 
 const Columns = () => {
   const [columns, setColumns] = useState([]);

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import BoardsItem from "./BoardsItem";
 import PropTypes from "prop-types";
 import { CardGrid } from "@vkontakte/vkui";
 import firebase from "firebase/app";
+
+import BoardsItem from "../BoardsItem/BoardsItem";
 
 const BoardsList = ({ boards, onDelete, onLoadBoards }) => {
   // Запрос в базу данных за досками

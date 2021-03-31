@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Div, Card, CardGrid, Header, Button } from "@vkontakte/vkui";
+import { Div, Card, Header, Button } from "@vkontakte/vkui";
 import firebase from "firebase/app";
 
 import "./Column.css";
-import Cards from "./Cards";
+import Cards from "../Cards/Cards";
 
 const Column = ({ name, id, onDelete }) => {
   const deleteColumn = () => {

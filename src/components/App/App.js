@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { View, Panel, Button } from "@vkontakte/vkui";
+import { View, Panel } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 
-import Boards from "./Boards";
-import Columns from './Columns'
+import Boards from "../../panels/Boards/Boards";
+import Columns from "../../panels/Columns/Columns";
 
 const panel = {
   boards: "boards",
@@ -19,10 +19,9 @@ const App = () => {
         <Boards onChangePanel={() => setActivePanel(panel.columns)} />
       </Panel>
 
-      <Panel id={panel.columns} className='Columns'>
+      <Panel id={panel.columns} className="Columns">
         <Columns />
       </Panel>
-
     </View>
   );
 };

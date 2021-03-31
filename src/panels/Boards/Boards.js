@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { PanelHeaderSimple, Div } from "@vkontakte/vkui";
-import BoardsList from "./BoardsList";
-import BoardsCreate from "./BoardsCreate";
+import BoardsList from "../../components/BoardsList/BoardsList";
+import BoardsCreate from "../../components/BoardsCreate/BoardsCreate";
 
 const Boards = ({ onChangePanel }) => {
   const [boards, setBoards] = useState([]);

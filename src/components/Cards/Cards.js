@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import firebase from "firebase/app";
 import { CardGrid } from "@vkontakte/vkui";
-import ColumnCard from "./ColumnCard";
 
-import CardCreate from "./CardCreate";
+import ColumnCard from "../ColumnCard/ColumnCard";
+import CardCreate from "../CardCreate/CardCreate";
 
 const Cards = () => {
   const [cards, setCards] = useState([]);

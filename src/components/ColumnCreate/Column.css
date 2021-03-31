@@ -1,0 +1,16 @@
+.Column {
+  box-sizing: border-box;
+}
+
+.Column__wrapper {
+  padding: 16px 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.Column__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}

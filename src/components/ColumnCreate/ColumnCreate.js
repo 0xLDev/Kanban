@@ -4,7 +4,7 @@ import { Div } from "@vkontakte/vkui";
 import firebase from "firebase/app";
 
 import "./Column.css";
-import CreateForm from "./CreateForm";
+import CreateForm from "../CreateForm/CreateForm";
 
 const ColumnCreate = ({ onCreate }) => {
   const createColumn = (name) => {

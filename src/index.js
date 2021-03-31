@@ -8,7 +8,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-import App from "./components/App";
+import App from "./components/App/App";
 
 var firebaseConfig = {
   apiKey: "AIzaSyCFAo5pYMNJduI8J_lTbrMQ1BirX3gf4Mo",
