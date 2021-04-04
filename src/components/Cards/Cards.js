@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import firebase from "firebase/app";
 import { CardGrid } from "@vkontakte/vkui";
 
 import ColumnCard from "../ColumnCard/ColumnCard";
 import CardCreate from "../CardCreate/CardCreate";
+import { getCards } from "../../actions";
 
 const Cards = ({ columnId }) => {
   const [cards, setCards] = useState([]);
@@ -18,25 +18,7 @@ const Cards = ({ columnId }) => {
 
   // Запрос в базу данных за карточками
   useEffect(() => {
-    const db = firebase.firestore();
-
-    db.collection("cards")
-      .where("columnId", "==", columnId)
-      .get()
-      .then((querySnapshot) => {
-        const cards = [];
-
-        querySnapshot.forEach((doc) => {
-          const { columnId, name } = doc.data();
-          cards.push({
-            id: doc.id,
-            columnId,
-            name,
-          });
-        });
-
-        setCards(cards);
-      });
+    getCards(columnId).then(setCards);
   }, []);
 
   return (

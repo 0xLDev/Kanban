@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { PanelHeaderSimple, Gallery, PanelHeaderBack } from "@vkontakte/vkui";
-import firebase from "firebase/app";
+import { getColumns } from "../../actions";
 
 import "./Columns.css";
 import Column from "../../components/Column/Column";
@@ -17,25 +17,7 @@ const Columns = ({
 }) => {
   // Запрос в базу данных за колонками
   useEffect(() => {
-    const db = firebase.firestore();
-
-    db.collection("columns")
-      .where("boardId", "==", board.id)
-      .get()
-      .then((querySnapshot) => {
-        const columns = [];
-
-        querySnapshot.forEach((doc) => {
-          const { boardId, name } = doc.data();
-          columns.push({
-            id: doc.id,
-            boardId,
-            name,
-          });
-        });
-
-        setColumns(columns);
-      });
+    getColumns(board.id).then(setColumns);
   }, []);
 
   return (

@@ -5,7 +5,7 @@ import { createBoard } from "../../actions";
 import CreateForm from "../CreateForm/CreateForm";
 
 const BoardsCreate = ({ onCreate }) => {
-  const createBoards = (name) => {
+  const createItem = (name) => {
     return createBoard(name)
       .then((doc) =>
         onCreate({
@@ -18,7 +18,7 @@ const BoardsCreate = ({ onCreate }) => {
 
   return (
     <CreateForm
-      onSubmit={createBoards}
+      onSubmit={createItem}
       placeholder="Введите название доски"
       actionTitle="Создать доску"
     />
