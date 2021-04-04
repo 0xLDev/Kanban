@@ -1,16 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import firebase from "firebase/app";
+import { createBoard } from "../../actions";
 
 import CreateForm from "../CreateForm/CreateForm";
 
 const BoardsCreate = ({ onCreate }) => {
   const createBoards = (name) => {
-    const db = firebase.firestore();
-
-    return db.collection("boards")
-      .add({ name })
-      .then((docRef) => docRef.get())
+    return createBoard(name)
       .then((doc) =>
         onCreate({
           id: doc.id,

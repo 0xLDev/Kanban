@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Panel, UsersStack } from "@vkontakte/vkui";
+import { View, Panel } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 
 import Boards from "../../panels/Boards/Boards";

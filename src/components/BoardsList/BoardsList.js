@@ -1,29 +1,14 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { CardGrid } from "@vkontakte/vkui";
-import firebase from "firebase/app";
 
+import { getBoards } from "../../actions";
 import BoardsItem from "../BoardsItem/BoardsItem";
 
 const BoardsList = ({ boards, onDelete, onLoadBoards, onBoardsClick }) => {
   // Запрос в базу данных за досками
   useEffect(() => {
-    const db = firebase.firestore();
-
-    db.collection("boards")
-      .get()
-      .then((querySnapshot) => {
-        const boards = [];
-
-        querySnapshot.forEach((doc) => {
-          boards.push({
-            id: doc.id,
-            name: doc.data().name,
-          });
-        });
-
-        onLoadBoards(boards);
-      });
+    getBoards().then(onLoadBoards);
   }, []);
 
   if (!boards.length) {
