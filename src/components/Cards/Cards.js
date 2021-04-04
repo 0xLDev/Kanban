@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import firebase from "firebase/app";
 import { CardGrid } from "@vkontakte/vkui";
 
 import ColumnCard from "../ColumnCard/ColumnCard";
 import CardCreate from "../CardCreate/CardCreate";
 
-const Cards = () => {
+const Cards = ({ columnId }) => {
   const [cards, setCards] = useState([]);
   const addCards = (card) => {
     setCards([...cards, card]);
@@ -20,6 +21,7 @@ const Cards = () => {
     const db = firebase.firestore();
 
     db.collection("cards")
+      .where("columnId", "==", columnId)
       .get()
       .then((querySnapshot) => {
         const cards = [];
@@ -44,9 +46,13 @@ const Cards = () => {
           {name}
         </ColumnCard>
       ))}
-      <CardCreate onCreate={addCards} />
+      <CardCreate onCreate={addCards} columnId={columnId} />
     </CardGrid>
   );
+};
+
+Cards.propTypes = {
+  columnId: PropTypes.string.isRequired,
 };
 
 export default Cards;

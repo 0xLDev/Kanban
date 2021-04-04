@@ -20,6 +20,7 @@ const Columns = ({
     const db = firebase.firestore();
 
     db.collection("columns")
+      .where("boardId", "==", board.id)
       .get()
       .then((querySnapshot) => {
         const columns = [];
@@ -47,7 +48,7 @@ const Columns = ({
         {columns.map(({ id, name }) => (
           <Column key={id} id={id} name={name} onDelete={removeColumn} />
         ))}
-        <ColumnCreate onCreate={addColumn} />
+        <ColumnCreate onCreate={addColumn} boardId={board.id} />
       </Gallery>
     </>
   );

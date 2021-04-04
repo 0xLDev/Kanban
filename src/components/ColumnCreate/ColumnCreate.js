@@ -6,13 +6,13 @@ import firebase from "firebase/app";
 import "./Column.css";
 import CreateForm from "../CreateForm/CreateForm";
 
-const ColumnCreate = ({ onCreate }) => {
+const ColumnCreate = ({ onCreate, boardId }) => {
   const createColumn = (name) => {
     const db = firebase.firestore();
 
     return db
       .collection("columns")
-      .add({ name })
+      .add({ name, boardId })
       .then((docRef) => docRef.get())
       .then((doc) =>
         onCreate({
@@ -36,6 +36,7 @@ const ColumnCreate = ({ onCreate }) => {
 
 ColumnCreate.propTypes = {
   onCreate: PropTypes.func.isRequired,
+  boardId: PropTypes.string.isRequired,
 };
 
 export default ColumnCreate;
