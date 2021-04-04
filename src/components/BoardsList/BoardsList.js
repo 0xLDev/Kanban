@@ -33,7 +33,12 @@ const BoardsList = ({ boards, onDelete, onLoadBoards, onBoardsClick }) => {
   return (
     <CardGrid size="l">
       {boards.map(({ id, name }) => (
-        <BoardsItem onDelete={onDelete} key={id} id={id} onClick={onBoardsClick}>
+        <BoardsItem
+          onDelete={onDelete}
+          key={id}
+          id={id}
+          onClick={() => onBoardsClick(id)}
+        >
           {name}
         </BoardsItem>
       ))}
@@ -50,7 +55,7 @@ BoardsList.propTypes = {
   ).isRequired,
   onDelete: PropTypes.func.isRequired,
   onLoadBoards: PropTypes.func.isRequired,
-  onBoardsClick: PropTypes.func.isRequired
+  onBoardsClick: PropTypes.func.isRequired,
 };
 
 export default BoardsList;

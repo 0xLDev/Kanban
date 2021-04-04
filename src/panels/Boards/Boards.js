@@ -1,19 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { PanelHeaderSimple, Div } from "@vkontakte/vkui";
+
 import BoardsList from "../../components/BoardsList/BoardsList";
 import BoardsCreate from "../../components/BoardsCreate/BoardsCreate";
 
-const Boards = ({ onChangePanel }) => {
-  const [boards, setBoards] = useState([]);
-
-  const addBoard = (board) => {
-    setBoards([...boards, board]);
-  };
-
-  const removeBoards = (removeId) => {
-    setBoards(boards.filter(({ id }) => id !== removeId));
-  };
+const Boards = ({ onChangePanel, addBoard, removeBoard, setBoards, boards }) => {
 
   return (
     <>
@@ -23,7 +15,7 @@ const Boards = ({ onChangePanel }) => {
       </Div>
       <BoardsList
         boards={boards}
-        onDelete={removeBoards}
+        onDelete={removeBoard}
         onLoadBoards={setBoards}
         onBoardsClick={onChangePanel}
       />

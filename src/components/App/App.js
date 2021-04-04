@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Panel } from "@vkontakte/vkui";
+import { View, Panel, UsersStack } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 
 import Boards from "../../panels/Boards/Boards";
@@ -12,8 +12,10 @@ const panel = {
 
 const App = () => {
   const [activePanel, setActivePanel] = useState(panel.boards);
+  const [activeBoard, setActiveBoard] = useState(null);
 
-  const goToColumns = () => {
+  const goToColumns = (boardId) => {
+    setActiveBoard(boards.find(({ id }) => id === boardId));
     setActivePanel(panel.columns);
   };
 
@@ -21,14 +23,44 @@ const App = () => {
     setActivePanel(panel.boards);
   };
 
+  // Доски
+  const [boards, setBoards] = useState([]);
+  const addBoard = (board) => setBoards([...boards, board]);
+  const removeBoard = (removeId) =>
+    setBoards(boards.filter(({ id }) => id !== removeId));
+
+  // Колонки
+  const [columns, setColumns] = useState([]);
+  const addColumn = (column) => {
+    setColumns([...columns, column]);
+  };
+  const removeColumn = (removeId) => {
+    setColumns(columns.filter(({ id }) => id !== removeId));
+  };
+
   return (
     <View activePanel={activePanel}>
       <Panel id={panel.boards}>
-        <Boards onChangePanel={goToColumns} />
+        <Boards
+          onChangePanel={goToColumns}
+          setBoards={setBoards}
+          addBoard={addBoard}
+          removeBoard={removeBoard}
+          boards={boards}
+        />
       </Panel>
 
       <Panel id={panel.columns} className="Columns">
-        <Columns goBack={goToBoards} />
+        {activeBoard && (
+          <Columns
+            goBack={goToBoards}
+            board={activeBoard}
+            addColumn={addColumn}
+            columns={columns}
+            removeColumn={removeColumn}
+            setColumns={setColumns}
+          />
+        )}
       </Panel>
     </View>
   );
