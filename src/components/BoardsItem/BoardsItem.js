@@ -4,7 +4,7 @@ import { Card, Div, Button } from "@vkontakte/vkui";
 import "./BoardsItem.css";
 import firebase from "firebase/app";
 
-const BoardsItem = ({ id, children, onDelete }) => {
+const BoardsItem = ({ id, children, onDelete, onClick }) => {
   const deleteItem = () => {
     const db = firebase.firestore();
 
@@ -18,7 +18,7 @@ const BoardsItem = ({ id, children, onDelete }) => {
   };
 
   return (
-    <Card>
+    <Card onClick={onClick}>
       <Div className="BoardsItem_content">
         {children}
         <Button mode="destructive" onClick={deleteItem}>
@@ -36,6 +36,7 @@ BoardsItem.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default BoardsItem;

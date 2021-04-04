@@ -25,6 +25,7 @@ const Boards = ({ onChangePanel }) => {
         boards={boards}
         onDelete={removeBoards}
         onLoadBoards={setBoards}
+        onBoardsClick={onChangePanel}
       />
     </>
   );

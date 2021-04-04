@@ -5,7 +5,7 @@ import firebase from "firebase/app";
 
 import BoardsItem from "../BoardsItem/BoardsItem";
 
-const BoardsList = ({ boards, onDelete, onLoadBoards }) => {
+const BoardsList = ({ boards, onDelete, onLoadBoards, onBoardsClick }) => {
   // Запрос в базу данных за досками
   useEffect(() => {
     const db = firebase.firestore();
@@ -33,7 +33,7 @@ const BoardsList = ({ boards, onDelete, onLoadBoards }) => {
   return (
     <CardGrid size="l">
       {boards.map(({ id, name }) => (
-        <BoardsItem onDelete={onDelete} key={id} id={id}>
+        <BoardsItem onDelete={onDelete} key={id} id={id} onClick={onBoardsClick}>
           {name}
         </BoardsItem>
       ))}
@@ -50,6 +50,7 @@ BoardsList.propTypes = {
   ).isRequired,
   onDelete: PropTypes.func.isRequired,
   onLoadBoards: PropTypes.func.isRequired,
+  onBoardsClick: PropTypes.func.isRequired
 };
 
 export default BoardsList;

@@ -11,16 +11,24 @@ const panel = {
 };
 
 const App = () => {
-  const [activePanel, setActivePanel] = useState(panel.columns);
+  const [activePanel, setActivePanel] = useState(panel.boards);
+
+  const goToColumns = () => {
+    setActivePanel(panel.columns);
+  };
+
+  const goToBoards = () => {
+    setActivePanel(panel.boards);
+  };
 
   return (
     <View activePanel={activePanel}>
       <Panel id={panel.boards}>
-        <Boards onChangePanel={() => setActivePanel(panel.columns)} />
+        <Boards onChangePanel={goToColumns} />
       </Panel>
 
       <Panel id={panel.columns} className="Columns">
-        <Columns />
+        <Columns goBack={goToBoards} />
       </Panel>
     </View>
   );
