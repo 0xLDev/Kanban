@@ -11,32 +11,14 @@ const panel = {
 };
 
 const App = () => {
-  const [activePanel, setActivePanel] = useState(panel.boards);
-  const [activeBoard, setActiveBoard] = useState(null);
-
-  const goToColumns = (boardId) => {
-    setActiveBoard(boards.find(({ id }) => id === boardId));
-    setActivePanel(panel.columns);
-  };
-
-  const goToBoards = () => {
-    setActivePanel(panel.boards);
-  };
-
   // Доски
-  const [boards, setBoards] = useState([]);
-  const addBoard = (board) => setBoards([...boards, board]);
-  const removeBoard = (removeId) =>
-    setBoards(boards.filter(({ id }) => id !== removeId));
-
+  const { boards, addBoard, removeBoard, setBoards } = useBoardsState();
   // Колонки
-  const [columns, setColumns] = useState([]);
-  const addColumn = (column) => {
-    setColumns([...columns, column]);
-  };
-  const removeColumn = (removeId) => {
-    setColumns(columns.filter(({ id }) => id !== removeId));
-  };
+  const { columns, addColumn, removeColumn, setColumns } = useColumnsState();
+  // Приложение
+  const { activePanel, activeBoard, goToColumns, goToBoards } = useAppState(
+    boards
+  );
 
   return (
     <View activePanel={activePanel}>
@@ -64,6 +46,43 @@ const App = () => {
       </Panel>
     </View>
   );
+};
+
+const useColumnsState = () => {
+  const [columns, setColumns] = useState([]);
+  const addColumn = (column) => {
+    setColumns([...columns, column]);
+  };
+  const removeColumn = (removeId) => {
+    setColumns(columns.filter(({ id }) => id !== removeId));
+  };
+
+  return { columns, addColumn, removeColumn, setColumns };
+};
+
+const useBoardsState = () => {
+  const [boards, setBoards] = useState([]);
+  const addBoard = (board) => setBoards([...boards, board]);
+  const removeBoard = (removeId) =>
+    setBoards(boards.filter(({ id }) => id !== removeId));
+
+  return { boards, addBoard, removeBoard, setBoards };
+};
+
+const useAppState = (boards) => {
+  const [activePanel, setActivePanel] = useState(panel.boards);
+  const [activeBoard, setActiveBoard] = useState(null);
+
+  const goToColumns = (boardId) => {
+    setActiveBoard(boards.find(({ id }) => id === boardId));
+    setActivePanel(panel.columns);
+  };
+
+  const goToBoards = () => {
+    setActivePanel(panel.boards);
+  };
+
+  return { activePanel, activeBoard, goToColumns, goToBoards };
 };
 
 export default App;
