@@ -4,7 +4,7 @@ import "@vkontakte/vkui/dist/vkui.css";
 
 import Boards from "../../panels/Boards/Boards";
 import Columns from "../../panels/Columns/Columns";
-import { panel } from "./constance";
+import { panel } from "./constants";
 import Context from "./context";
 import { useAppState } from "./hooks";
 
