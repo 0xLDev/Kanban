@@ -1,14 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
 import { createBoard } from "../../actions";
+import Context from "../App/context";
 
 import CreateForm from "../CreateForm/CreateForm";
 
-const BoardsCreate = ({ onCreate }) => {
+const BoardsCreate = () => {
+  const { addBoard } = useContext(Context);
+
   const createItem = (name) => {
     return createBoard(name)
       .then((doc) =>
-        onCreate({
+        addBoard({
           id: doc.id,
           ...doc.data(),
         })
@@ -23,10 +25,6 @@ const BoardsCreate = ({ onCreate }) => {
       actionTitle="Создать доску"
     />
   );
-};
-
-BoardsCreate.propTypes = {
-  onCreate: PropTypes.func.isRequired,
 };
 
 export default BoardsCreate;

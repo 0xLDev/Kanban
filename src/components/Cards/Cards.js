@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { CardGrid } from "@vkontakte/vkui";
 
 import ColumnCard from "../ColumnCard/ColumnCard";
 import CardCreate from "../CardCreate/CardCreate";
 import { getCards } from "../../actions";
+import Context from "../App/context";
 
 const Cards = ({ columnId }) => {
-  const [cards, setCards] = useState([]);
-  const addCards = (card) => {
-    setCards([...cards, card]);
-  };
-
-  const removeCard = (removeId) => {
-    setCards(cards.filter(({ id }) => id !== removeId));
-  };
+  const { cards, setCards } = useContext(Context);
 
   // Запрос в базу данных за карточками
   useEffect(() => {
@@ -24,11 +18,11 @@ const Cards = ({ columnId }) => {
   return (
     <CardGrid size="l">
       {cards.map(({ id, name }) => (
-        <ColumnCard key={id} id={id} onDelete={removeCard}>
+        <ColumnCard key={id} id={id}>
           {name}
         </ColumnCard>
       ))}
-      <CardCreate onCreate={addCards} columnId={columnId} />
+      <CardCreate columnId={columnId} />
     </CardGrid>
   );
 };

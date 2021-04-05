@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useContext } from "react";
 import { CardGrid } from "@vkontakte/vkui";
 
 import { getBoards } from "../../actions";
 import BoardsItem from "../BoardsItem/BoardsItem";
+import Context from "../App/context";
 
-const BoardsList = ({ boards, onDelete, onLoadBoards, onBoardsClick }) => {
+const BoardsList = () => {
+  const { setBoards, boards } = useContext(Context);
+
   // Запрос в базу данных за досками
   useEffect(() => {
-    getBoards().then(onLoadBoards);
+    getBoards().then(setBoards);
   }, []);
 
   if (!boards.length) {
@@ -18,29 +20,12 @@ const BoardsList = ({ boards, onDelete, onLoadBoards, onBoardsClick }) => {
   return (
     <CardGrid size="l">
       {boards.map(({ id, name }) => (
-        <BoardsItem
-          onDelete={onDelete}
-          key={id}
-          id={id}
-          onClick={() => onBoardsClick(id)}
-        >
+        <BoardsItem key={id} id={id}>
           {name}
         </BoardsItem>
       ))}
     </CardGrid>
   );
-};
-
-BoardsList.propTypes = {
-  boards: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onLoadBoards: PropTypes.func.isRequired,
-  onBoardsClick: PropTypes.func.isRequired,
 };
 
 export default BoardsList;

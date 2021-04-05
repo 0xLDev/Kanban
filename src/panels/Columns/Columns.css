@@ -4,6 +4,12 @@
 }
 
 .Columns__list {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   height: auto;
+}
+
+.Columns__list .Gallery__viewport {
+  flex-grow: 1;
 }

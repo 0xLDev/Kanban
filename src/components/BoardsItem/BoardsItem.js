@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Card, Div, Button } from "@vkontakte/vkui";
 
 import "./BoardsItem.css";
 import { deleteBoard } from "../../actions/index";
+import Context from "../App/context";
 
-const BoardsItem = ({ id, children, onDelete, onClick }) => {
-  const deleteItem = () => {
+const BoardsItem = ({ id, children }) => {
+  const { removeBoard, goToColumns } = useContext(Context);
+  const goToColumnPanel = () => goToColumns(id);
+  const deleteItem = (event) => {
+    event.stopPropagation();
     deleteBoard(id)
-      .then(() => onDelete(id))
+      .then(() => removeBoard(id))
       .catch(console.error);
   };
 
   return (
-    <Card onClick={onClick}>
+    <Card onClick={goToColumnPanel}>
       <Div className="BoardsItem_content">
         {children}
         <Button mode="destructive" onClick={deleteItem}>
@@ -26,12 +30,10 @@ const BoardsItem = ({ id, children, onDelete, onClick }) => {
 
 BoardsItem.propTypes = {
   id: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
 export default BoardsItem;
