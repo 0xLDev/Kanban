@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { Div, Card, Button } from "@vkontakte/vkui";
+import { Div, Card } from "@vkontakte/vkui";
 
 import "./ColumnCard.css";
 import { deleteCard } from "../../actions";
 import Context from "../App/context";
+import { Icon20DeleteOutline } from "@vkontakte/icons";
 
 const ColumnCard = ({ children, id }) => {
   const { removeCard } = useContext(Context);
@@ -16,12 +17,10 @@ const ColumnCard = ({ children, id }) => {
   };
   return (
     <>
-      <Card>
+      <Card mode="shadow">
         <Div className="ColumnCard__wrapper">
           {children}
-          <Button mode="destructive" onClick={deleteItem}>
-            Удалить
-          </Button>
+          <Icon20DeleteOutline fill={"red"} onClick={deleteItem} />
         </Div>
       </Card>
     </>

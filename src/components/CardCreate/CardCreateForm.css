@@ -1,0 +1,9 @@
+.CardCreateForm__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.CardCreateForm__actionButton {
+  flex-grow: 1;
+}

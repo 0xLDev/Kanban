@@ -20,7 +20,7 @@ const Columns = () => {
         Доска «{activeBoard.name}»
       </PanelHeaderSimple>
 
-      <Gallery slideWidth="100%" align="center" className="Columns__list">
+      <Gallery slideWidth="85%" align="left" className="Columns__list">
         {columns.map(({ id, name }) => (
           <Column key={id} id={id} name={name} />
         ))}

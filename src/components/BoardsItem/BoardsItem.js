@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Card, Div, Button } from "@vkontakte/vkui";
 
+import { Icon20DeleteOutlineAndroid } from "@vkontakte/icons";
 import "./BoardsItem.css";
 import { deleteBoard } from "../../actions/index";
 import Context from "../App/context";
@@ -20,9 +21,7 @@ const BoardsItem = ({ id, children }) => {
     <Card onClick={goToColumnPanel}>
       <Div className="BoardsItem_content">
         {children}
-        <Button mode="destructive" onClick={deleteItem}>
-          Удалить
-        </Button>
+        <Icon20DeleteOutlineAndroid onClick={deleteItem} fill={'red'} />
       </Div>
     </Card>
   );

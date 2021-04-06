@@ -2,10 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, Card, Input, FormItem, FormLayout } from "@vkontakte/vkui";
 import { Icon24Add } from "@vkontakte/icons";
+import { Icon24Dismiss } from "@vkontakte/icons";
 
-import { useCreateForm } from "./hooks";
+import { useCreateForm } from "../CreateForm/hooks";
 
-const CreateForm = ({ onSubmit, placeholder, actionTitle }) => {
+import "./CardCreateForm.css";
+
+const CardCreateForm = ({ onSubmit }) => {
   const {
     name,
     status,
@@ -14,7 +17,7 @@ const CreateForm = ({ onSubmit, placeholder, actionTitle }) => {
     setFormMode,
     onChangeInput,
     isButtonMode,
-  } = useCreateForm({ onSubmit });
+  } = useCreateForm({onSubmit});
 
   if (isButtonMode) {
     return (
@@ -23,39 +26,42 @@ const CreateForm = ({ onSubmit, placeholder, actionTitle }) => {
         mode="outline"
         stretched="true"
         before={<Icon24Add />}
+        stretched
         onClick={setFormMode}
       >
-        {actionTitle}
+        Добавить карточку
       </Button>
     );
   }
 
   return (
-    <Card mode="shadow">
+    <Card mode="outline">
       <FormLayout onSubmit={submit}>
         <FormItem status={status}>
           <Input
             autoFocus
             value={name}
             onChange={onChangeInput}
-            placeholder={placeholder}
+            placeholder="Введите название карточки"
           />
         </FormItem>
       </FormLayout>
       <FormItem>
-        <Button onClick={submit}>{actionTitle}</Button>
-        <Button onClick={reset} mode="tertiary">
-          Отменить
-        </Button>
+        <div className="CardCreateForm__buttons">
+          <Button onClick={submit} className="CardCreateForm__actionButton" mode='commerce'>
+            Добавить
+          </Button>
+          <Button onClick={reset} mode="tertiary">
+            <Icon24Dismiss />
+          </Button>
+        </div>
       </FormItem>
     </Card>
   );
 };
 
-CreateForm.propTypes = {
+CardCreateForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  actionTitle: PropTypes.string.isRequired,
 };
 
-export default CreateForm;
+export default CardCreateForm;

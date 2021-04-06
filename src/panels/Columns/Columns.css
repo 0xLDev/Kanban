@@ -4,10 +4,11 @@
 }
 
 .Columns__list {
-  display: flex;
-  flex-direction: column;
   flex-grow: 1;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dynamic_blue);
 }
 
 .Columns__list .Gallery__viewport {

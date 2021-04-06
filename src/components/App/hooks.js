@@ -52,16 +52,24 @@ const useCardsState = () => {
   return { cards, setCards, addCards, removeCard };
 };
 
+const usePopoutState = () => {
+  const [popout, setPopout] = useState(null);
+
+  return { popout, setPopout };
+};
+
 export const useAppState = () => {
   const boardsState = useBoardsState();
   const columnsState = useColumnsState();
   const navState = useNavState(boardsState.boards);
   const cardsState = useCardsState();
+  const popoutState = usePopoutState();
 
   return {
     ...boardsState,
     ...columnsState,
     ...navState,
     ...cardsState,
+    ...popoutState,
   };
 };

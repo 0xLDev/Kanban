@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
-import CreateForm from "../CreateForm/CreateForm";
+import CardCreateForm from "../CardCreate/CardCreateForm";
 import { createCard } from "../../actions";
 import Context from "../App/context";
 
@@ -18,13 +18,7 @@ const CardCreate = ({ columnId }) => {
       .catch(console.error);
   };
 
-  return (
-    <CreateForm
-      onSubmit={createItem}
-      placeholder="Введите название карточки"
-      actionTitle="Создать карточку"
-    />
-  );
+  return <CardCreateForm onSubmit={createItem} />;
 };
 
 CardCreate.propTypes = {

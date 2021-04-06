@@ -10,9 +10,10 @@ import { useAppState } from "./hooks";
 
 const App = () => {
   const state = useAppState();
+
   return (
     <Context.Provider value={state}>
-      <View activePanel={state.activePanel}>
+      <View activePanel={state.activePanel} popout={state.popout}>
         <Panel id={panel.boards}>
           <Boards />
         </Panel>

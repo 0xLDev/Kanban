@@ -2,15 +2,22 @@
   box-sizing: border-box;
 }
 
+.Column__title .Header__content {
+  color: var(--white);
+}
+
 .Column__wrapper {
   padding: 16px 0;
-  background-color: #fff;
-  border: 1px solid #ccc;
   box-sizing: border-box;
 }
 
 .Column__header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+}
+
+.Column__headerButton {
+  padding-right: 0;
+  border: none
 }
