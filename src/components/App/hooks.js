@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { panel } from "./constance";
+import { panel } from "./constants";
 
 const useColumnsState = () => {
   const [columns, setColumns] = useState([]);
