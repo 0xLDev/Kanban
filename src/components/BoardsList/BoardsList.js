@@ -1,17 +1,11 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { CardGrid } from "@vkontakte/vkui";
 
-import { getBoards } from "../../actions";
 import BoardsItem from "../BoardsItem/BoardsItem";
 import Context from "../App/context";
 
 const BoardsList = () => {
-  const { setBoards, boards } = useContext(Context);
-
-  // Запрос в базу данных за досками
-  useEffect(() => {
-    getBoards().then(setBoards);
-  }, []);
+  const { boards } = useContext(Context);
 
   if (!boards.length) {
     return null;

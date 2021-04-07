@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Div } from "@vkontakte/vkui";
+import { useRoute } from "react-router5";
 
 import "../Column/Column.css";
 import ColumnCreateForm from "./ColumnCreateForm";
@@ -7,9 +8,16 @@ import { createColumn } from "../../actions";
 import Context from "../App/context";
 
 const ColumnCreate = () => {
-  const { addColumn, activeBoard } = useContext(Context);
+  const { boards, addColumn } = useContext(Context);
+  const {
+    route: {
+      params: { boardId },
+    },
+  } = useRoute();
+  const board = boards.find(({ id }) => id === boardId) || {};
+
   const createItem = (name) => {
-    return createColumn(name, activeBoard.id)
+    return createColumn(name, board.id)
       .then((doc) =>
         addColumn({
           id: doc.id,

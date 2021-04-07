@@ -1,6 +1,5 @@
-import { useState } from "react";
-
-import { panel } from "./constants";
+import { useState, useEffect } from "react";
+import { getBoards } from "../../actions";
 
 const useColumnsState = () => {
   const [columns, setColumns] = useState([]);
@@ -20,23 +19,22 @@ const useBoardsState = () => {
   const removeBoard = (removeId) =>
     setBoards(boards.filter(({ id }) => id !== removeId));
 
+  // Запрос в базу данных за досками
+  useEffect(() => {
+    getBoards().then(setBoards);
+  }, []);
+
   return { boards, addBoard, removeBoard, setBoards };
 };
 
-const useNavState = (boards) => {
-  const [activePanel, setActivePanel] = useState(panel.boards);
-  const [activeBoard, setActiveBoard] = useState(null);
+const useNavState = () => {
+  const [activePanel, setActivePanel] = useState(null);
 
-  const goToColumns = (boardId) => {
-    setActiveBoard(boards.find(({ id }) => id === boardId));
-    setActivePanel(panel.columns);
+  const changeRoute = ({ route }) => {
+    setActivePanel(route.name);
   };
 
-  const goToBoards = () => {
-    setActivePanel(panel.boards);
-  };
-
-  return { activePanel, activeBoard, goToColumns, goToBoards };
+  return { activePanel, changeRoute };
 };
 
 const useCardsState = () => {
@@ -61,7 +59,7 @@ const usePopoutState = () => {
 export const useAppState = () => {
   const boardsState = useBoardsState();
   const columnsState = useColumnsState();
-  const navState = useNavState(boardsState.boards);
+  const navState = useNavState();
   const cardsState = useCardsState();
   const popoutState = usePopoutState();
 

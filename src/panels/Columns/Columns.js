@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { PanelHeaderSimple, Gallery, PanelHeaderBack } from "@vkontakte/vkui";
+import { useRoute } from "react-router5";
 import { getColumns } from "../../actions";
 import Context from "../../components/App/context";
 
@@ -8,16 +9,27 @@ import Column from "../../components/Column/Column";
 import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
 
 const Columns = () => {
-  const { goToBoards, setColumns, columns, activeBoard } = useContext(Context);
+  const { goToBoards, setColumns, columns, boards } = useContext(Context);
+  const {
+    route: {
+      params: { boardId },
+    },
+  } = useRoute();
+  const board = boards.find(({ id }) => id === boardId) || {};
+
   // Запрос в базу данных за колонками
   useEffect(() => {
-    getColumns(activeBoard.id).then(setColumns);
+    if (board.id) {
+      getColumns(board.id).then(setColumns);
+    }
   }, []);
+
+
 
   return (
     <>
       <PanelHeaderSimple left={<PanelHeaderBack onClick={goToBoards} />}>
-        Доска «{activeBoard.name}»
+        Доска {board.name ? `«${board.name}»` : ""}
       </PanelHeaderSimple>
 
       <Gallery slideWidth="85%" align="left" className="Columns__list">
