@@ -1,19 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import CardCreateForm from "../CardCreate/CardCreateForm";
 import { createCard } from "../../actions";
-import Context from "../App/context";
+import { addCards } from "../../actions/actions";
+import { useDispatch } from "react-redux";
 
 const CardCreate = ({ columnId }) => {
-  const { addCards } = useContext(Context);
+  const dispatch = useDispatch();
   const createItem = (name) => {
     return createCard(name, columnId)
       .then((doc) =>
-        addCards({
-          id: doc.id,
-          ...doc.data(),
-        })
+        dispatch(
+          addCards({
+            id: doc.id,
+            ...doc.data(),
+          })
+        )
       )
       .catch(console.error);
   };

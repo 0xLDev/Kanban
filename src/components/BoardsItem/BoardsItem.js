@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { useRouter } from "react-router5";
 import { Card, Div } from "@vkontakte/vkui";
@@ -8,17 +8,18 @@ import { Icon20DeleteOutlineAndroid } from "@vkontakte/icons";
 import "./BoardsItem.css";
 import { pages } from "../../router";
 import { deleteBoard } from "../../actions/index";
-import Context from "../App/context";
+import { removeBoard } from "../../actions/actions";
+import { useDispatch } from "react-redux";
 
 const BoardsItem = ({ id, children }) => {
+  const dispatch = useDispatch();
   const router = useRouter();
-  const { removeBoard } = useContext(Context);
   const goToColumnPanel = () => router.navigate(pages.COLUMNS, { boardId: id });
   const deleteItem = (event) => {
     event.stopPropagation();
 
     deleteBoard(id)
-      .then(() => removeBoard(id))
+      .then(() => dispatch(removeBoard(id)))
       .catch(console.error);
   };
 

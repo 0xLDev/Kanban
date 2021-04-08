@@ -33,7 +33,9 @@
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-redux": "^7.2.3",
     "react-router5": "^8.0.1",
+    "redux": "^4.0.5",
     "router5": "^8.0.1",
     "router5-plugin-browser": "^8.0.1"
   },

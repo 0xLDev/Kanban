@@ -19,10 +19,6 @@ const useBoardsState = () => {
   const removeBoard = (removeId) =>
     setBoards(boards.filter(({ id }) => id !== removeId));
 
-  // Запрос в базу данных за досками
-  useEffect(() => {
-    getBoards().then(setBoards);
-  }, []);
 
   return { boards, addBoard, removeBoard, setBoards };
 };

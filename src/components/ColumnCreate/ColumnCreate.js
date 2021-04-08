@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Div } from "@vkontakte/vkui";
 import { useRoute } from "react-router5";
 
 import "../Column/Column.css";
 import ColumnCreateForm from "./ColumnCreateForm";
 import { createColumn } from "../../actions";
-import Context from "../App/context";
+import { addColumn } from "../../actions/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const ColumnCreate = () => {
-  const { boards, addColumn } = useContext(Context);
+  const dispatch = useDispatch();
+  const boards = useSelector((state) => state.boards);
   const {
     route: {
       params: { boardId },
@@ -19,10 +21,12 @@ const ColumnCreate = () => {
   const createItem = (name) => {
     return createColumn(name, board.id)
       .then((doc) =>
-        addColumn({
-          id: doc.id,
-          ...doc.data(),
-        })
+        dispatch(
+          addColumn({
+            id: doc.id,
+            ...doc.data(),
+          })
+        )
       )
       .catch(console.error);
   };

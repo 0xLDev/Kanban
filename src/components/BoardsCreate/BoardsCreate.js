@@ -1,19 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { createBoard } from "../../actions";
-import Context from "../App/context";
+import { addBoard } from "../../actions/actions";
 
 import CreateForm from "../CreateForm/CreateForm";
 
 const BoardsCreate = () => {
-  const { addBoard } = useContext(Context);
+  const dispatch = useDispatch();
 
   const createItem = (name) => {
     return createBoard(name)
       .then((doc) =>
-        addBoard({
-          id: doc.id,
-          ...doc.data(),
-        })
+        dispatch(
+          addBoard({
+            id: doc.id,
+            ...doc.data(),
+          })
+        )
       )
       .catch(console.error);
   };

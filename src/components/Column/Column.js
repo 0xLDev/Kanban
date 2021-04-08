@@ -1,45 +1,45 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Div, Card, Header, Button, Alert } from "@vkontakte/vkui";
-import { Icon16MoreHorizontal, Icon28DeleteOutline } from "@vkontakte/icons";
+import { Icon16MoreHorizontal } from "@vkontakte/icons";
 
 import "./Column.css";
 import Cards from "../Cards/Cards";
 import { deleteColumn } from "../../actions";
-import Context from "../App/context";
+import { removeColumn, setPopout } from "../../actions/actions";
+import { useDispatch } from "react-redux";
 
 const Column = ({ name, id }) => {
-  const { removeColumn, setPopout } = useContext(Context);
-
+  const dispatch = useDispatch();
   const deleteItem = () => {
     deleteColumn(id)
-      .then(() => removeColumn(id))
+      .then(() => dispatch(removeColumn(id)))
       .catch(console.error);
   };
 
   const showColumnOptions = () => {
-    const close = () => setPopout(null);
-
-    setPopout(
-      <Alert
-        actions={[
-          {
-            title: "Отмена",
-            autoclose: true,
-            mode: "cancel",
-          },
-          {
-            title: "Удалить",
-            autoclose: true,
-            mode: "destructive",
-            action: deleteItem,
-          },
-        ]}
-        actionsLayout="horizontal"
-        onClose={close}
-        header="Удаление колонки"
-        text="Вы уверены, что хотите удалить эту колонку?"
-      />
+    dispatch(
+      setPopout(
+        <Alert
+          actions={[
+            {
+              title: "Отмена",
+              autoclose: true,
+              mode: "cancel",
+            },
+            {
+              title: "Удалить",
+              autoclose: true,
+              mode: "destructive",
+              action: deleteItem,
+            },
+          ]}
+          actionsLayout="horizontal"
+          onClose={() => setPopout(null)}
+          header="Удаление колонки"
+          text="Вы уверены, что хотите удалить эту колонку?"
+        />
+      )
     );
   };
 

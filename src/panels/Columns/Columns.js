@@ -1,15 +1,20 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { PanelHeaderSimple, Gallery, PanelHeaderBack } from "@vkontakte/vkui";
 import { useRoute } from "react-router5";
 import { getColumns } from "../../actions";
-import Context from "../../components/App/context";
+import { setColumns, setActivePanel } from "../../actions/actions";
+import { pages } from "../../router";
 
 import "./Columns.css";
 import Column from "../../components/Column/Column";
 import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
 
 const Columns = () => {
-  const { goToBoards, setColumns, columns, boards } = useContext(Context);
+  const dispatch = useDispatch();
+  const columns = useSelector((state) => state.columns);
+  const boards = useSelector((state) => state.boards);
+  const goToBoards = () => dispatch(setActivePanel(pages.BOARDS));
   const {
     route: {
       params: { boardId },
@@ -20,11 +25,9 @@ const Columns = () => {
   // Запрос в базу данных за колонками
   useEffect(() => {
     if (board.id) {
-      getColumns(board.id).then(setColumns);
+      getColumns(board.id).then((columns) => dispatch(setColumns(columns)));
     }
   }, []);
-
-
 
   return (
     <>
