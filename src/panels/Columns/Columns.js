@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { PanelHeaderSimple, Gallery, PanelHeaderBack } from "@vkontakte/vkui";
 import { useRoute } from "react-router5";
 import { getColumns } from "../../api";
-import { setColumns, setActivePanel } from "../../actions/actions";
-import { pages } from "../../router";
+import { setColumns } from "../../actions/actions";
 
 import "./Columns.css";
 import Column from "../../components/Column/Column";
@@ -14,7 +13,7 @@ const Columns = () => {
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.columns);
   const boards = useSelector((state) => state.boards);
-  const goToBoards = () => dispatch(setActivePanel(pages.BOARDS));
+  const goToBoards = () => window.history.back();
   const {
     route: {
       params: { boardId },
