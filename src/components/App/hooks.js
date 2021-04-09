@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { getBoards } from "../../actions";
+import { useState } from "react";
+import { getBoards } from "../../api";
 
 const useColumnsState = () => {
   const [columns, setColumns] = useState([]);
@@ -18,7 +18,6 @@ const useBoardsState = () => {
   const addBoard = (board) => setBoards([...boards, board]);
   const removeBoard = (removeId) =>
     setBoards(boards.filter(({ id }) => id !== removeId));
-
 
   return { boards, addBoard, removeBoard, setBoards };
 };

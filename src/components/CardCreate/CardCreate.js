@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import CardCreateForm from "../CardCreate/CardCreateForm";
-import { createCard } from "../../actions";
+import { createCard } from "../../api";
 import { addCards } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 

@@ -5,7 +5,7 @@ import { CardGrid, Div } from "@vkontakte/vkui";
 
 import ColumnCard from "../ColumnCard/ColumnCard";
 import CardCreate from "../CardCreate/CardCreate";
-import { getCards } from "../../actions";
+import { getCards } from "../../api";
 import { setCards } from "../../actions/actions";
 import "./Cards.css";
 

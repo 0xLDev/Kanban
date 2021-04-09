@@ -4,7 +4,7 @@ import { useRoute } from "react-router5";
 
 import "../Column/Column.css";
 import ColumnCreateForm from "./ColumnCreateForm";
-import { createColumn } from "../../actions";
+import { createColumn } from "../../api";
 import { addColumn } from "../../actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 

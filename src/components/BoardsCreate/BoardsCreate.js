@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { createBoard } from "../../actions";
+import { createBoard } from "../../api";
 import { addBoard } from "../../actions/actions";
 
 import CreateForm from "../CreateForm/CreateForm";

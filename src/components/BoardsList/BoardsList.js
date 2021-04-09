@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { CardGrid } from "@vkontakte/vkui";
 
 import BoardsItem from "../BoardsItem/BoardsItem";
-import { getBoards } from "../../actions";
+import { getBoards } from "../../api";
 import { setBoards } from "../../actions/actions";
 import { useSelector, useDispatch } from "react-redux";
 

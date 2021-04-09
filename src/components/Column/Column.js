@@ -5,7 +5,7 @@ import { Icon16MoreHorizontal } from "@vkontakte/icons";
 
 import "./Column.css";
 import Cards from "../Cards/Cards";
-import { deleteColumn } from "../../actions";
+import { deleteColumn } from "../../api";
 import { removeColumn, setPopout } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 
@@ -35,7 +35,7 @@ const Column = ({ name, id }) => {
             },
           ]}
           actionsLayout="horizontal"
-          onClose={() => setPopout(null)}
+          onClose={() => dispatch(setPopout(null))}
           header="Удаление колонки"
           text="Вы уверены, что хотите удалить эту колонку?"
         />

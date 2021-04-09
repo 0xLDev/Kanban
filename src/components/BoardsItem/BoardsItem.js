@@ -7,7 +7,7 @@ import { Icon20DeleteOutlineAndroid } from "@vkontakte/icons";
 
 import "./BoardsItem.css";
 import { pages } from "../../router";
-import { deleteBoard } from "../../actions/index";
+import { deleteBoard } from "../../api";
 import { removeBoard } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 

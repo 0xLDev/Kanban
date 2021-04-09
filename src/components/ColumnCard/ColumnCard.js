@@ -4,7 +4,7 @@ import { Div, Card } from "@vkontakte/vkui";
 import { Icon20DeleteOutline } from "@vkontakte/icons";
 
 import "./ColumnCard.css";
-import { deleteCard } from "../../actions";
+import { deleteCard } from "../../api";
 import { removeCard } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 
