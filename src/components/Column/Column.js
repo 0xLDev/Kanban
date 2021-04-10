@@ -5,16 +5,13 @@ import { Icon16MoreHorizontal } from "@vkontakte/icons";
 
 import "./Column.css";
 import Cards from "../Cards/Cards";
-import { deleteColumn } from "../../api";
-import { removeColumn, setPopout } from "../../actions/actions";
+import { deleteColumn, setPopout } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 
 const Column = ({ name, id }) => {
   const dispatch = useDispatch();
   const deleteItem = () => {
-    deleteColumn(id)
-      .then(() => dispatch(removeColumn(id)))
-      .catch(console.error);
+    dispatch(deleteColumn(id));
   };
 
   const showColumnOptions = () => {

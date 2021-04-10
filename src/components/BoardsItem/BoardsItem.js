@@ -7,8 +7,7 @@ import { Icon20DeleteOutlineAndroid } from "@vkontakte/icons";
 
 import "./BoardsItem.css";
 import { pages } from "../../router";
-import { deleteBoard } from "../../api";
-import { removeBoard } from "../../actions/actions";
+import { deleteBoard } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 
 const BoardsItem = ({ id, children }) => {
@@ -18,9 +17,7 @@ const BoardsItem = ({ id, children }) => {
   const deleteItem = (event) => {
     event.stopPropagation();
 
-    deleteBoard(id)
-      .then(() => dispatch(removeBoard(id)))
-      .catch(console.error);
+    dispatch(deleteBoard(id));
   };
 
   return (

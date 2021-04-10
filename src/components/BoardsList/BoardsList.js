@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { CardGrid } from "@vkontakte/vkui";
+import { useSelector, useDispatch } from "react-redux";
 
 import BoardsItem from "../BoardsItem/BoardsItem";
-import { getBoards } from "../../api";
-import { setBoards } from "../../actions/actions";
-import { useSelector, useDispatch } from "react-redux";
+import { fetchBoards } from "../../actions/actions";
 
 const BoardsList = () => {
   const dispatch = useDispatch();
@@ -12,8 +11,8 @@ const BoardsList = () => {
 
   // Запрос в базу данных за досками
   useEffect(() => {
-    getBoards().then((boards) => dispatch(setBoards(boards)));
-  }, []);
+    dispatch(fetchBoards());
+  }, [dispatch]);
 
   if (!boards.length) {
     return null;

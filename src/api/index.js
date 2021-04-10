@@ -15,7 +15,7 @@ export const initialize = () => {
   firebase.initializeApp(firebaseConfig);
 };
 
-export const createBoard = (name) => {
+const createBoard = (name) => {
   const db = firebase.firestore();
 
   return db
@@ -24,7 +24,7 @@ export const createBoard = (name) => {
     .then((docRef) => docRef.get());
 };
 
-export const getBoards = () => {
+const getBoards = () => {
   const db = firebase.firestore();
 
   return db
@@ -44,13 +44,13 @@ export const getBoards = () => {
     });
 };
 
-export const deleteBoard = (id) => {
+const deleteBoard = (id) => {
   const db = firebase.firestore();
 
   return db.collection("boards").doc(id).delete();
 };
 
-export const getColumns = (boardId) => {
+const getColumns = (boardId) => {
   const db = firebase.firestore();
 
   return db
@@ -73,13 +73,13 @@ export const getColumns = (boardId) => {
     });
 };
 
-export const deleteColumn = (id) => {
+const deleteColumn = (id) => {
   const db = firebase.firestore();
 
   return db.collection("columns").doc(id).delete();
 };
 
-export const getCards = (columnId) => {
+const getCards = (columnId) => {
   const db = firebase.firestore();
 
   return db
@@ -102,13 +102,13 @@ export const getCards = (columnId) => {
     });
 };
 
-export const deleteCard = (id) => {
+const deleteCard = (id) => {
   const db = firebase.firestore();
 
   return db.collection("cards").doc(id).delete();
 };
 
-export const createCard = (name, columnId) => {
+const createCard = (name, columnId) => {
   const db = firebase.firestore();
 
   return db
@@ -117,11 +117,23 @@ export const createCard = (name, columnId) => {
     .then((docRef) => docRef.get());
 };
 
-export const createColumn = (name, boardId) => {
+const createColumn = (name, boardId) => {
   const db = firebase.firestore();
 
   return db
     .collection("columns")
     .add({ name, boardId })
     .then((docRef) => docRef.get());
+};
+
+export const api = {
+  createBoard,
+  getBoards,
+  deleteBoard,
+  getColumns,
+  deleteColumn,
+  getCards,
+  deleteCard,
+  createCard,
+  createColumn,
 };

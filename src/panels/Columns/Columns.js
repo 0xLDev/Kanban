@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PanelHeaderSimple, Gallery, PanelHeaderBack } from "@vkontakte/vkui";
 import { useRoute } from "react-router5";
-import { getColumns } from "../../api";
-import { setColumns } from "../../actions/actions";
+import { fetchColumns } from "../../actions/actions";
 
 import "./Columns.css";
 import Column from "../../components/Column/Column";
@@ -23,10 +22,8 @@ const Columns = () => {
 
   // Запрос в базу данных за колонками
   useEffect(() => {
-    if (board.id) {
-      getColumns(board.id).then((columns) => dispatch(setColumns(columns)));
-    }
-  }, []);
+    dispatch(fetchColumns(boardId))
+  }, [dispatch, boardId]);
 
   return (
     <>

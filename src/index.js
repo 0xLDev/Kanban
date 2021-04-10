@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import bridge from "@vkontakte/vk-bridge";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import * as backend from "./api";
 import * as router from "./router";
@@ -17,7 +18,7 @@ const route = router.initialize();
 backend.initialize();
 
 // Инициализация Redux
-const store = createStore(reducer, composeWithDevTools());
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <App router={route} store={store} />,

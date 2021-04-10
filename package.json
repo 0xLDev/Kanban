@@ -37,6 +37,7 @@
     "react-router5": "^8.0.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.3.0",
     "router5": "^8.0.1",
     "router5-plugin-browser": "^8.0.1"
   },

@@ -4,8 +4,7 @@ import { useRoute } from "react-router5";
 
 import "../Column/Column.css";
 import ColumnCreateForm from "./ColumnCreateForm";
-import { createColumn } from "../../api";
-import { addColumn } from "../../actions/actions";
+import { createColumn } from "../../actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const ColumnCreate = () => {
@@ -18,18 +17,7 @@ const ColumnCreate = () => {
   } = useRoute();
   const board = boards.find(({ id }) => id === boardId) || {};
 
-  const createItem = (name) => {
-    return createColumn(name, board.id)
-      .then((doc) =>
-        dispatch(
-          addColumn({
-            id: doc.id,
-            ...doc.data(),
-          })
-        )
-      )
-      .catch(console.error);
-  };
+  const createItem = (name) => dispatch(createColumn(name, board.id));
 
   return (
     <Div className="Column">

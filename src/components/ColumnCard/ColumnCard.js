@@ -4,18 +4,14 @@ import { Div, Card } from "@vkontakte/vkui";
 import { Icon20DeleteOutline } from "@vkontakte/icons";
 
 import "./ColumnCard.css";
-import { deleteCard } from "../../api";
-import { removeCard } from "../../actions/actions";
+import { deleteCard } from "../../actions/actions";
 import { useDispatch } from "react-redux";
 
 const ColumnCard = ({ children, id }) => {
   const dispatch = useDispatch();
 
-  const deleteItem = () => {
-    deleteCard(id)
-      .then(() => dispatch(removeCard(id)))
-      .catch(console.error);
-  };
+  const deleteItem = () => dispatch(deleteCard(id));
+
   return (
     <>
       <Card mode="shadow">
