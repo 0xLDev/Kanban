@@ -1,13 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import bridge from "@vkontakte/vk-bridge";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
 import * as backend from "./api";
 import * as router from "./router";
 import App from "./components/App/AppContainer";
-import { reducer } from "./reducers/reducer";
+import { getStore } from "./store";
 // // Init VK  Mini App
 // bridge.send("VKWebAppInit");
 
@@ -18,7 +15,7 @@ const route = router.initialize();
 backend.initialize();
 
 // Инициализация Redux
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = getStore();
 
 ReactDOM.render(
   <App router={route} store={store} />,
