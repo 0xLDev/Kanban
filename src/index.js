@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import bridge from "@vkontakte/vk-bridge";
 import * as backend from "./api";
 import * as router from "./router";
-import App from "./components/App/AppContainer";
-import { getStore } from "./store";
+import App from "./app/components/App/AppContainer";
+import { getStore } from "./app/store";
 // // Init VK  Mini App
 // bridge.send("VKWebAppInit");
 
