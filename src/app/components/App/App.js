@@ -6,6 +6,7 @@ import "@vkontakte/vkui/dist/vkui.css";
 
 import Boards from "../../../features/boards/panels/Boards/Boards";
 import Columns from "../../../features/columns/panels/Columns/Columns";
+import Card from "../../../features/card/panels/Card/Card";
 import { pages } from "../../../router";
 import { changeRoute } from "../../actions";
 import { getActivePanel, getPopout } from "../../selectors";
@@ -35,6 +36,9 @@ const App = () => {
 
         <Panel id={pages.COLUMNS} className="Columns">
           <Columns />
+        </Panel>
+        <Panel id={pages.CARD}>
+          <Card />
         </Panel>
       </View>
     </>

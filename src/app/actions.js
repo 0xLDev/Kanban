@@ -11,3 +11,7 @@ export const setPopout = (popout) => ({
   type: actionType.SET_POPOUT,
   payload: { popout },
 });
+
+export const goBack = () => () => {
+  window.history.back();
+};

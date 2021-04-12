@@ -9,12 +9,13 @@ import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
 import { fetchColumns } from "../../actions";
 import { getColumns } from "../../selectors";
 import { getBoards } from "../../../boards/selectors";
+import { goBack } from "../../../../app/actions";
 
 const Columns = () => {
   const dispatch = useDispatch();
   const columns = useSelector(getColumns);
   const boards = useSelector(getBoards);
-  const goToBoards = () => window.history.back();
+  const goToBoards = () => dispatch(goBack());
   const {
     route: {
       params: { boardId },

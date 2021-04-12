@@ -30,6 +30,7 @@
     "eruda-code": "^2.0.0",
     "eruda-dom": "^2.0.0",
     "firebase": "^8.3.1",
+    "marked": "^2.0.3",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
