@@ -4,12 +4,13 @@ import { useRoute } from "react-router5";
 
 import "../Column/Column.css";
 import ColumnCreateForm from "./ColumnCreateForm";
-import { createColumn } from "../../actions/actions";
+import { createColumn } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
+import { getBoards } from "../../selectors";
 
 const ColumnCreate = () => {
   const dispatch = useDispatch();
-  const boards = useSelector((state) => state.boards);
+  const boards = useSelector(getBoards);
   const {
     route: {
       params: { boardId },

@@ -3,11 +3,12 @@ import { CardGrid } from "@vkontakte/vkui";
 import { useSelector, useDispatch } from "react-redux";
 
 import BoardsItem from "../BoardsItem/BoardsItem";
-import { fetchBoards } from "../../actions/actions";
+import { fetchBoards } from "../../actions";
+import { getBoards } from "../../selectors";
 
 const BoardsList = () => {
   const dispatch = useDispatch();
-  const boards = useSelector((state) => state.boards);
+  const boards = useSelector(getBoards);
 
   // Запрос в базу данных за досками
   useEffect(() => {

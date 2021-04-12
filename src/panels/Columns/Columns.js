@@ -2,16 +2,17 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PanelHeaderSimple, Gallery, PanelHeaderBack } from "@vkontakte/vkui";
 import { useRoute } from "react-router5";
-import { fetchColumns } from "../../actions/actions";
+import { fetchColumns } from "../../actions";
 
 import "./Columns.css";
 import Column from "../../components/Column/Column";
 import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
+import { getBoards, getColumns } from "../../selectors";
 
 const Columns = () => {
   const dispatch = useDispatch();
-  const columns = useSelector((state) => state.columns);
-  const boards = useSelector((state) => state.boards);
+  const columns = useSelector(getColumns);
+  const boards = useSelector(getBoards);
   const goToBoards = () => window.history.back();
   const {
     route: {
@@ -22,7 +23,7 @@ const Columns = () => {
 
   // Запрос в базу данных за колонками
   useEffect(() => {
-    dispatch(fetchColumns(boardId))
+    dispatch(fetchColumns(boardId));
   }, [dispatch, boardId]);
 
   return (

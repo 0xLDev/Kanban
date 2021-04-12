@@ -5,7 +5,7 @@ import { Icon16MoreHorizontal } from "@vkontakte/icons";
 
 import "./Column.css";
 import Cards from "../Cards/Cards";
-import { deleteColumn, setPopout } from "../../actions/actions";
+import { deleteColumn, setPopout } from "../../actions";
 import { useDispatch } from "react-redux";
 
 const Column = ({ name, id }) => {

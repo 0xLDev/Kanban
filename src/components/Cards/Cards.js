@@ -5,16 +5,17 @@ import { CardGrid, Div } from "@vkontakte/vkui";
 
 import ColumnCard from "../ColumnCard/ColumnCard";
 import CardCreate from "../CardCreate/CardCreate";
-import { fetchCards } from "../../actions/actions";
+import { fetchCards } from "../../actions";
 import "./Cards.css";
+import { getCards } from "../../selectors";
 
 const Cards = ({ columnId }) => {
   const dispatch = useDispatch();
-  const cards = useSelector((state) => state.cards);
+  const cards = useSelector(getCards);
 
   // Запрос в базу данных за карточками
   useEffect(() => {
-    dispatch(fetchCards(columnId))
+    dispatch(fetchCards(columnId));
   }, [dispatch, columnId]);
 
   return (

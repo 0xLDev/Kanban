@@ -7,12 +7,13 @@ import "@vkontakte/vkui/dist/vkui.css";
 import Boards from "../../panels/Boards/Boards";
 import Columns from "../../panels/Columns/Columns";
 import { pages } from "../../router";
-import { changeRoute } from "../../actions/actions";
+import { changeRoute } from "../../actions";
+import { getActivePanel, getPopout } from "../../selectors";
 
 const App = () => {
   const dispatch = useDispatch();
-  const activePanel = useSelector((state) => state.activePanel);
-  const popout = useSelector((state) => state.popout);
+  const activePanel = useSelector(getActivePanel);
+  const popout = useSelector(getPopout);
   const { route, router } = useRoute();
 
   useEffect(() => {
