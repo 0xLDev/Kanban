@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, memo } from "react";
 import { useDispatch } from "react-redux";
 import { createBoard } from "../../actions";
 
@@ -7,7 +7,9 @@ import CreateForm from "../../../../components/CreateForm/CreateForm";
 const BoardsCreate = () => {
   const dispatch = useDispatch();
 
-  const createItem = (name) => dispatch(createBoard(name));
+  const createItem = useCallback((name) => dispatch(createBoard(name)), [
+    dispatch,
+  ]);
 
   return (
     <CreateForm
@@ -18,4 +20,4 @@ const BoardsCreate = () => {
   );
 };
 
-export default BoardsCreate;
+export default memo(BoardsCreate);

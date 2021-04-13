@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, memo } from "react";
 import PropTypes from "prop-types";
 import { Div, Card, Header, Button, Alert } from "@vkontakte/vkui";
 import { Icon16MoreHorizontal } from "@vkontakte/icons";
@@ -11,11 +11,11 @@ import { useDispatch } from "react-redux";
 
 const Column = ({ name, id }) => {
   const dispatch = useDispatch();
-  const deleteItem = () => {
+  const deleteItem = useCallback(() => {
     dispatch(deleteColumn(id));
-  };
+  }, [dispatch, id]);
 
-  const showColumnOptions = () => {
+  const showColumnOptions = useCallback(() => {
     dispatch(
       setPopout(
         <Alert
@@ -39,7 +39,7 @@ const Column = ({ name, id }) => {
         />
       )
     );
-  };
+  }, [dispatch, deleteItem]);
 
   return (
     <Div className="Column">
@@ -67,4 +67,4 @@ Column.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-export default Column;
+export default memo(Column);

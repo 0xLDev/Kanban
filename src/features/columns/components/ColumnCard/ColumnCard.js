@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, memo } from "react";
 import PropTypes from "prop-types";
 import { useRouter } from "react-router5";
 import { Div, Card } from "@vkontakte/vkui";
@@ -14,7 +14,10 @@ const ColumnCard = ({ children, id }) => {
 
   const deleteItem = () => dispatch(deleteCard(id));
   const router = useRouter();
-  const gotoCardPage = () => router.navigate(pages.CARD, { cardId: id });
+  const gotoCardPage = useCallback(
+    () => router.navigate(pages.CARD, { cardId: id }),
+    [router, id]
+  );
 
   return (
     <>
@@ -33,4 +36,4 @@ ColumnCard.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default ColumnCard;
+export default memo(ColumnCard);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { PanelHeaderSimple, Div } from "@vkontakte/vkui";
 
 import BoardsList from "../../components/BoardsList/BoardsList";
@@ -18,4 +18,4 @@ const Boards = () => {
   );
 };
 
-export default Boards;
+export default memo(Boards);

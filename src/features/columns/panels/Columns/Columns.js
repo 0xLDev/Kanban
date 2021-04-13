@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PanelHeaderSimple, Gallery, PanelHeaderBack } from "@vkontakte/vkui";
 import { useRoute } from "react-router5";
@@ -15,7 +15,7 @@ const Columns = () => {
   const dispatch = useDispatch();
   const columns = useSelector(getColumns);
   const boards = useSelector(getBoards);
-  const goToBoards = () => dispatch(goBack());
+  const goToBoards = useCallback(() => dispatch(goBack()), [dispatch]);
   const {
     route: {
       params: { boardId },
@@ -44,4 +44,4 @@ const Columns = () => {
   );
 };
 
-export default Columns;
+export default memo(Columns);

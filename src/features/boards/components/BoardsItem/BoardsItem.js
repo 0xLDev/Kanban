@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, memo } from "react";
 import PropTypes from "prop-types";
 import { useRouter } from "react-router5";
 import { Card, Div } from "@vkontakte/vkui";
@@ -13,12 +13,18 @@ import { useDispatch } from "react-redux";
 const BoardsItem = ({ id, children }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const goToColumnPanel = () => router.navigate(pages.COLUMNS, { boardId: id });
-  const deleteItem = (event) => {
-    event.stopPropagation();
+  const goToColumnPanel = useCallback(
+    () => router.navigate(pages.COLUMNS, { boardId: id }),
+    [router, id]
+  );
+  const deleteItem = useCallback(
+    (event) => {
+      event.stopPropagation();
 
-    dispatch(deleteBoard(id));
-  };
+      dispatch(deleteBoard(id));
+    },
+    [dispatch, id]
+  );
 
   return (
     <Card onClick={goToColumnPanel}>
@@ -38,4 +44,4 @@ BoardsItem.propTypes = {
   ]).isRequired,
 };
 
-export default BoardsItem;
+export default memo(BoardsItem);

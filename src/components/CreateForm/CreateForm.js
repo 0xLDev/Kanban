@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Button, Card, Input, FormItem, FormLayout } from "@vkontakte/vkui";
 import { Icon24Add } from "@vkontakte/icons";
@@ -58,4 +58,4 @@ CreateForm.propTypes = {
   actionTitle: PropTypes.string.isRequired,
 };
 
-export default CreateForm;
+export default memo(CreateForm);

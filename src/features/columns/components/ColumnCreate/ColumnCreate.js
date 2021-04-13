@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useCallback, memo } from "react";
 import { Div } from "@vkontakte/vkui";
 import { useRoute } from "react-router5";
 
@@ -16,9 +16,15 @@ const ColumnCreate = () => {
       params: { boardId },
     },
   } = useRoute();
-  const board = boards.find(({ id }) => id === boardId) || {};
+  const board = useMemo(() => boards.find(({ id }) => id === boardId) || {}, [
+    boardId,
+    boards,
+  ]);
 
-  const createItem = (name) => dispatch(createColumn(name, board.id));
+  const createItem = useCallback(
+    (name) => dispatch(createColumn(name, board.id)),
+    [board, dispatch]
+  );
 
   return (
     <Div className="Column">
@@ -27,4 +33,4 @@ const ColumnCreate = () => {
   );
 };
 
-export default ColumnCreate;
+export default memo(ColumnCreate);

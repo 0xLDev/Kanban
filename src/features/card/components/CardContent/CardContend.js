@@ -1,5 +1,5 @@
+import React, { memo } from "react";
 import { Div } from "@vkontakte/vkui";
-import React from "react";
 import { useSelector } from "react-redux";
 import { getText } from "../../selectors";
 import marked from "marked";
@@ -22,4 +22,4 @@ const CardContent = () => {
   );
 };
 
-export default CardContent;
+export default memo(CardContent);

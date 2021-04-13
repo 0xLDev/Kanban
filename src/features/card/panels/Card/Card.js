@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, memo } from "react";
 import {
   PanelHeaderSimple,
   PanelSpinner,
@@ -20,7 +20,7 @@ const Card = () => {
     },
   } = useRoute();
   const cardName = useSelector(getName);
-  const goToColumns = () => dispatch(goBack());
+  const goToColumns = useCallback(() => dispatch(goBack()), [dispatch]);
 
   useEffect(() => {
     if (cardId) {
@@ -43,4 +43,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default memo(Card);
