@@ -1,12 +1,12 @@
 import React, { memo } from "react";
-import { Div } from "@vkontakte/vkui";
 import { useSelector } from "react-redux";
-import { getText } from "../../selectors";
+import { Div } from "@vkontakte/vkui";
 import marked from "marked";
 
-import "./CardContent.css";
+import "./style.css";
+import { getText } from "../../selectors";
 
-const CardContent = () => {
+const TextContent = () => {
   const text = useSelector(getText);
 
   if (!text) {
@@ -16,10 +16,10 @@ const CardContent = () => {
   const content = text.replace(/\\n/g, "\n");
 
   return (
-    <Div className="CardContent">
+    <Div className="TextContent">
       <span dangerouslySetInnerHTML={{ __html: marked(content) }} />
     </Div>
   );
 };
 
-export default memo(CardContent);
+export default memo(TextContent);

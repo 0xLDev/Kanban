@@ -66,4 +66,4 @@ export const editColumn = (id, name) => (dispatch) =>
       dispatch({ type: "editColumnSuccess" });
       dispatch(replaceColumn(id, name));
     })
-    .catch(() => dispatch({ type: "editColumnSuccess" }));
+    .catch(() => dispatch({ type: "editColumnFail" }));
