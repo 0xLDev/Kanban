@@ -5,7 +5,7 @@ import { Icon16MoreHorizontal } from "@vkontakte/icons";
 
 import "./Column.css";
 import Cards from "../../../cards/components/Cards/Cards";
-import { deleteColumn } from "../../actions";
+import { deleteColumn, editColumn } from "../../actions";
 import { setPopout } from "../../../../app/actions";
 import { useDispatch } from "react-redux";
 
@@ -15,15 +15,25 @@ const Column = ({ name, id }) => {
     dispatch(deleteColumn(id));
   }, [dispatch, id]);
 
+  const editItem = useCallback(() => {
+    const newName = prompt("Введите название колонки", name);
+
+    if (typeof newName !== "string" || !newName.trim().length) {
+      return;
+    }
+
+    dispatch(editColumn(id, newName));
+  }, [dispatch, id, name]);
+
   const showColumnOptions = useCallback(() => {
     dispatch(
       setPopout(
         <Alert
           actions={[
             {
-              title: "Отмена",
+              title: "Редактировать",
               autoclose: true,
-              mode: "cancel",
+              action: editItem,
             },
             {
               title: "Удалить",
@@ -31,11 +41,15 @@ const Column = ({ name, id }) => {
               mode: "destructive",
               action: deleteItem,
             },
+            {
+              title: "Отмена",
+              autoclose: true,
+              mode: "cancel",
+            },
           ]}
-          actionsLayout="horizontal"
+          actionsLayout="vertical"
           onClose={() => dispatch(setPopout(null))}
-          header="Удаление колонки"
-          text="Вы уверены, что хотите удалить эту колонку?"
+          header="Подтвердите действие"
         />
       )
     );
