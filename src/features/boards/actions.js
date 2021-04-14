@@ -16,6 +16,11 @@ export const setBoards = (boards) => ({
   payload: { boards },
 });
 
+export const replaceBoard = (id, name) => ({
+  type: actionType.REPLACE_BOARD,
+  payload: { id, name },
+});
+
 export const fetchBoards = () => (dispatch) =>
   api
     .getBoards()
@@ -42,3 +47,12 @@ export const createBoard = (name) => (dispatch) =>
       dispatch(addBoard({ id: doc.id, ...doc.data() }));
     })
     .catch(() => dispatch({ type: "createBoardFail" }));
+
+export const editBoard = (id, name) => (dispatch) =>
+  api
+    .editBoard(id, name)
+    .then(() => {
+      dispatch({ type: "editBoardSuccess" });
+      dispatch(replaceBoard(id, name));
+    })
+    .catch(() => dispatch({ type: "editBoardFail" }));

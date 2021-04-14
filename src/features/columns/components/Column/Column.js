@@ -45,7 +45,6 @@ const Column = ({ name, id }) => {
     <Div className="Column">
       <div className="Column__header">
         <Header className="Column__title">{name}</Header>
-
         <Button
           mode="overlay_outline"
           className="Column__headerButton"

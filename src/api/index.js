@@ -24,6 +24,12 @@ const createBoard = (name) => {
     .then((docRef) => docRef.get());
 };
 
+const editBoard = (id, name) => {
+  const db = firebase.firestore();
+
+  return db.collection('boards').doc(id).set({ name });
+};
+
 const getBoards = () => {
   const db = firebase.firestore();
 
@@ -115,7 +121,6 @@ const getCard = (cardId) => {
     }));
 };
 
-
 const deleteCard = (id) => {
   const db = firebase.firestore();
 
@@ -142,6 +147,7 @@ const createColumn = (name, boardId) => {
 
 export const api = {
   createBoard,
+  editBoard,
   getBoards,
   deleteBoard,
   getColumns,

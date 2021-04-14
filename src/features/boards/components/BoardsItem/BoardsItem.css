@@ -1,5 +1,9 @@
 .BoardsItem_content {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+}
+
+.BoardsItem__button {
+  border: none;
 }

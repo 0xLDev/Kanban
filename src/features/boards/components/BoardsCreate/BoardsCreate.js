@@ -4,7 +4,7 @@ import { createBoard } from "../../actions";
 
 import CreateForm from "../../../../components/CreateForm/CreateForm";
 
-const BoardsCreate = () => {
+const BoardEdit = () => {
   const dispatch = useDispatch();
 
   const createItem = useCallback((name) => dispatch(createBoard(name)), [
@@ -20,4 +20,4 @@ const BoardsCreate = () => {
   );
 };
 
-export default memo(BoardsCreate);
+export default memo(BoardEdit);

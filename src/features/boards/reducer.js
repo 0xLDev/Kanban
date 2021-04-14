@@ -35,6 +35,25 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     }
 
+    case actionType.REPLACE_BOARD: {
+      const { id, name } = payload;
+      const list = state.list.map((board) => {
+        if (board.id !== id) {
+          return board;
+        }
+
+        return {
+          ...board,
+          name,
+        };
+      });
+
+      return {
+        ...state,
+        list,
+      };
+    }
+
     default: {
       return state;
     }
