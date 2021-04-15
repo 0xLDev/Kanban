@@ -4,13 +4,13 @@ import "firebase/firestore";
 
 export const initialize = () => {
   var firebaseConfig = {
-    apiKey: "AIzaSyCFAo5pYMNJduI8J_lTbrMQ1BirX3gf4Mo",
-    authDomain: "kanban-23ca3.firebaseapp.com",
-    projectId: "kanban-23ca3",
-    storageBucket: "kanban-23ca3.appspot.com",
-    messagingSenderId: "875166904949",
-    appId: "1:875166904949:web:a9b16de5fc45503aeffe3c",
-    measurementId: "G-VEB5G8CP70",
+    apiKey: "AIzaSyBlv847QgN4C6NLoBYH_-e8qVNuM4I1V4M",
+    authDomain: "kanban-dc7c1.firebaseapp.com",
+    projectId: "kanban-dc7c1",
+    storageBucket: "kanban-dc7c1.appspot.com",
+    messagingSenderId: "384947310057",
+    appId: "1:384947310057:web:bf75c2ad19845ce9af0f78",
+    measurementId: "G-DR2MRFL0K7",
   };
   firebase.initializeApp(firebaseConfig);
 };
