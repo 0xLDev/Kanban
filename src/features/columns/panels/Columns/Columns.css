@@ -5,7 +5,7 @@
 
 .Columns__list {
   flex-grow: 1;
-  height: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: var(--dynamic_blue);
