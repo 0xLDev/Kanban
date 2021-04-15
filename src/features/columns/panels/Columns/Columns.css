@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .Columns .Panel__in {
   display: flex;
   flex-direction: column;
