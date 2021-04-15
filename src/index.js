@@ -5,8 +5,8 @@ import * as backend from "./api";
 import * as router from "./router";
 import App from "./app/components/App/AppContainer";
 import { getStore } from "./app/store";
-// // Init VK  Mini App
-// bridge.send("VKWebAppInit");
+// Init VK  Mini App
+bridge.send("VKWebAppInit");
 
 // Инициализация роутера
 const route = router.initialize();
