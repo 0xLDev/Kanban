@@ -3,6 +3,9 @@ body {
   height: 100vh;
 }
 
+div#root {
+  height: 100vh;
+}
 
 .Columns .Panel__in {
   display: flex;
