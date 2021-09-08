@@ -13,5 +13,7 @@ npm-debug.log*
 # Prod Bundle
 /build
 
+package-lock.json
+
 .vscode
 .idea
